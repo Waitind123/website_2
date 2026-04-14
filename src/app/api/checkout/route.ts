@@ -23,8 +23,18 @@ export async function POST(req: Request) {
     );
   }
   const priceId = process.env.STRIPE_PRICE_PRO;
-  if (!priceId || !process.env.STRIPE_SECRET_KEY) {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!priceId || !secretKey) {
     return NextResponse.json({ error: "当前服务器未完成 Stripe 计费配置" }, { status: 503 });
+  }
+  if (!secretKey.startsWith("sk_")) {
+    return NextResponse.json(
+      {
+        error:
+          "STRIPE_SECRET_KEY 配置错误：请使用 sk_test/sk_live（不要使用 rk_* 或 pk_*）。",
+      },
+      { status: 503 },
+    );
   }
   const stripe = requireStripe();
   const user = await prisma.user.findUnique({ where: { id: uid } });
@@ -35,33 +45,44 @@ export async function POST(req: Request) {
     process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") || "http://localhost:3000";
 
   let customerId = user.stripeCustomerId;
-  if (!customerId) {
-    const customer = await stripe.customers.create({
-      email: user.email,
-      metadata: { userId: user.id },
-    });
-    customerId = customer.id;
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { stripeCustomerId: customerId },
-    });
-  }
+  try {
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: user.email,
+        metadata: { userId: user.id },
+      });
+      customerId = customer.id;
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { stripeCustomerId: customerId },
+      });
+    }
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
-    customer: customerId,
-    line_items: [{ price: priceId, quantity: 1 }],
-    success_url: `${origin}/dashboard?checkout=success`,
-    cancel_url: `${origin}/pricing?checkout=cancel`,
-    metadata: { userId: user.id },
-    subscription_data: {
+    const session = await stripe.checkout.sessions.create({
+      mode: "subscription",
+      customer: customerId,
+      line_items: [{ price: priceId, quantity: 1 }],
+      success_url: `${origin}/dashboard?checkout=success`,
+      cancel_url: `${origin}/pricing?checkout=cancel`,
       metadata: { userId: user.id },
-    },
-  });
+      subscription_data: {
+        metadata: { userId: user.id },
+      },
+    });
 
-  if (!session.url) {
-    return NextResponse.json({ error: "创建支付会话失败，请稍后重试" }, { status: 500 });
+    if (!session.url) {
+      return NextResponse.json({ error: "创建支付会话失败，请稍后重试" }, { status: 500 });
+    }
+    await trackEvent({ event: "checkout_started", userId: user.id, path: "/pricing" });
+    return NextResponse.json({ url: session.url });
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "Stripe 请求失败，请检查 price/key 是否同一模式。";
+    return NextResponse.json(
+      {
+        error: `Stripe 结账创建失败：${message}`,
+      },
+      { status: 500 },
+    );
   }
-  await trackEvent({ event: "checkout_started", userId: user.id, path: "/pricing" });
-  return NextResponse.json({ url: session.url });
 }
