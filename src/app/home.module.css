@@ -1,0 +1,247 @@
+.page {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+}
+
+.bgGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 420px at 20% -10%, rgba(76, 187, 255, 0.24), transparent 70%),
+    radial-gradient(900px 360px at 100% 0%, rgba(125, 101, 255, 0.22), transparent 64%),
+    radial-gradient(700px 320px at 30% 95%, rgba(36, 183, 184, 0.14), transparent 66%);
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 20px 84px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.heroLeft {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(155deg, rgba(15, 26, 46, 0.8), rgba(9, 16, 32, 0.62));
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 55px rgba(1, 6, 18, 0.45);
+}
+
+.eyebrow {
+  color: #99daff;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  margin: 0 0 14px;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.titleGradient {
+  background: linear-gradient(90deg, #9de8ff 0%, #9fcbff 44%, #cfbcff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.desc {
+  margin: 18px 0 0;
+  color: #aeb8cc;
+  line-height: 1.72;
+  font-size: 16px;
+  max-width: 680px;
+}
+
+.ctaRow {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ctaPrimary,
+.ctaGhost,
+.ctaSoft {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.ctaPrimary {
+  background: #74d7ff;
+  color: #021827;
+  font-weight: 600;
+}
+
+.ctaPrimary:hover {
+  background: #8ee0ff;
+}
+
+.ctaGhost {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #e9f3ff;
+}
+
+.ctaGhost:hover {
+  border-color: rgba(116, 215, 255, 0.64);
+}
+
+.ctaSoft {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #bac7dd;
+}
+
+.ctaSoft:hover {
+  color: #eef6ff;
+}
+
+.heroRight {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.statCard {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
+  min-height: 122px;
+}
+
+.statLabel {
+  color: #8f9ab0;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.statValue {
+  margin: 10px 0 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.statHint {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #9aa5ba;
+}
+
+.section {
+  margin-top: 48px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.sectionSub {
+  margin: 10px 0 0;
+  color: #9aa6bc;
+  font-size: 15px;
+}
+
+.painGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.painCard {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 18px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.painCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(128, 215, 255, 0.55);
+}
+
+.painTitle {
+  margin: 0;
+  font-size: 16px;
+}
+
+.painBody {
+  margin: 10px 0 0;
+  color: #adb8cc;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.launchCard {
+  margin-top: 48px;
+  border-radius: 22px;
+  border: 1px solid rgba(109, 205, 255, 0.28);
+  background: linear-gradient(135deg, rgba(61, 180, 255, 0.14), rgba(138, 121, 255, 0.12));
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.launchText h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.launchText p {
+  margin: 10px 0 0;
+  color: #d9e7ff;
+  opacity: 0.82;
+  max-width: 720px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .painGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .launchCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

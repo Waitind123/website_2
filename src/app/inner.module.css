@@ -1,0 +1,231 @@
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 46px 20px 72px;
+}
+
+.narrow {
+  max-width: 760px;
+}
+
+.authWrap {
+  max-width: 520px;
+}
+
+.top {
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #9edfff;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.title {
+  margin: 8px 0 0;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  margin: 10px 0 0;
+  color: #aab5c9;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.linkInline {
+  color: #7cd8ff;
+}
+
+.linkInline:hover {
+  text-decoration: underline;
+}
+
+.grid2 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 20px;
+}
+
+.cardStrong {
+  border-color: rgba(120, 216, 255, 0.28);
+  background: linear-gradient(135deg, rgba(96, 187, 255, 0.15), rgba(139, 115, 255, 0.13));
+}
+
+.planName {
+  margin: 0;
+  font-size: 20px;
+}
+
+.planPrice {
+  margin: 10px 0 0;
+  font-size: 32px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.planMeta {
+  color: #95a3bb;
+  font-size: 14px;
+  font-weight: 450;
+}
+
+.list {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  color: #b5c2d8;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btnPrimary,
+.btnGhost {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary {
+  background: #73d6ff;
+  color: #021827;
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+.btnPrimary:hover {
+  background: #8be0ff;
+}
+
+.btnGhost {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #e5f1ff;
+}
+
+.btnGhost:hover {
+  border-color: rgba(114, 214, 255, 0.62);
+}
+
+.notice {
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(97, 229, 167, 0.42);
+  background: rgba(45, 182, 124, 0.16);
+  color: #c2ffe3;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.kv {
+  margin-top: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.kvItem dt {
+  color: #96a2b8;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.kvItem dd {
+  margin: 5px 0 0;
+  color: #edf3ff;
+  font-size: 14px;
+}
+
+.listWrap {
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+}
+
+.postItem {
+  display: block;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.postItem:hover {
+  border-color: rgba(124, 213, 255, 0.56);
+  transform: translateY(-1px);
+}
+
+.postTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.postTitle {
+  margin: 0;
+  font-size: 17px;
+}
+
+.postDate {
+  color: #8f9cb2;
+  font-size: 12px;
+}
+
+.postBody {
+  margin: 8px 0 0;
+  color: #aab5c9;
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+.postMeta {
+  margin: 8px 0 0;
+  color: #8f9cb2;
+  font-size: 12px;
+}
+
+.empty {
+  border-radius: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.24);
+  color: #9eaac1;
+  text-align: center;
+  padding: 28px;
+}
+
+@media (max-width: 860px) {
+  .wrap {
+    padding: 34px 14px 58px;
+  }
+
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
